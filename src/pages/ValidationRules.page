@@ -1,0 +1,7 @@
+<apex:page standardController="Validation_Rule__c" extensions="ValidationRulesExtension" showHeader="false" sidebar="false">
+    <script type="text/javascript">
+        window.onload = function() {
+            window.location = '{!url}';
+        }
+    </script>
+</apex:page>

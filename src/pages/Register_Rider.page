@@ -1,0 +1,70 @@
+<apex:page standardController="Contact" extensions="RegisterRiderController" action="{!addPerson}">
+	<apex:form >
+		<apex:pageBlock title="Register Rider">
+			
+			<apex:actionFunction name="updateRider" action="{!updateRider}" reRender="">
+				<apex:param name="personFEIID" value=""/>
+				<apex:param name="groupCodes" value=""/>
+			</apex:actionFunction>
+
+			<apex:pageBlockButtons >
+				<apex:commandButton value="Back to Rider" action="{!backToRider}" rendered="{!isValidationError || isPotentialDuplicate}"/>
+				<apex:commandButton value="Create new Rider in FEI" action="{!confirmAddPerson}" rendered="{!isPotentialDuplicate}"/>
+				<!--<apex:commandButton value="Update Rider" action="{!backToRider}" rendered="{!isPotentialDuplicate}"/>-->
+			</apex:pageBlockButtons>
+
+			<apex:pageMessages id="messages" />
+
+			<apex:pageBlockSection rendered="false">
+				<apex:outputField value="{!contact.Gender__c}"/>
+				<apex:outputField value="{!contact.LastName}"/>
+				<apex:outputField value="{!contact.FirstName}"/>
+				<apex:outputField value="{!contact.Nationality__c}"/>
+				<apex:outputField value="{!contact.Birthdate}"/>
+				<apex:outputField value="{!contact.FEI_Membership_Number__c}"/>
+				<apex:outputField value="{!contact.Email}"/>
+			</apex:pageBlockSection>
+
+			<apex:pageBlockSection title="Duplicate Riders" columns="1" >
+				<apex:outputPanel layout="none" rendered="{!isPotentialDuplicate}">
+					<apex:pageBlockTable value="{!lstPersonWrapper}" var="dupPerson" id="idDuplicatePerson">
+						
+						
+						<apex:column >
+							<apex:facet name="header">FEI ID</apex:facet>
+							<apex:outputLink value="#" onclick="updateRider({!dupPerson.personFEIID}, '{!dupPerson.groupCodes}')">
+								<apex:outputText >{!dupPerson.personFEIID}</apex:outputText>
+							</apex:outputLink>
+						</apex:column>
+						
+						<apex:column >
+							<apex:facet name="header">Name</apex:facet>
+							<apex:outputText >{!dupPerson.name}</apex:outputText>
+						</apex:column>
+						
+						<apex:column >
+							<apex:facet name="header">Date of Birth</apex:facet>
+							<apex:outputText >{!dupPerson.dateOfBirth}</apex:outputText>
+						</apex:column>
+
+						<apex:column >
+							<apex:facet name="header">Email</apex:facet>
+							<apex:outputText >{!dupPerson.email}</apex:outputText>
+						</apex:column>
+
+						<apex:column >
+							<apex:facet name="header">FEI Qualification Grade</apex:facet>
+							<apex:outputText >{!dupPerson.groupCodes}</apex:outputText>
+						</apex:column>
+						
+						<apex:column >
+							<apex:facet name="header">Rule Description</apex:facet>
+							<apex:outputText >{!dupPerson.ruleDescription}</apex:outputText>
+						</apex:column>
+						
+					</apex:pageBlockTable>
+				</apex:outputPanel>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

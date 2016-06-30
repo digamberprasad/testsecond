@@ -1,0 +1,20 @@
+<apex:page showHeader="false" sidebar="false">
+      <head>
+        <script src="https://britisheventing--dev.cs83.my.salesforce.com/lightning/lightning.out.js"></script>
+        <script type="text/javascript">
+        window.onload = function() {
+          $Lightning.use("c:ChatterOut",doneAppLoad,"https://britisheventing--dev.cs83.my.salesforce.com","ACCESS_TOKEN");
+        }
+        function doneAppLoad() {
+          // Code after app is loaded
+          // Create components
+          $Lightning.createComponent("c:ChatterUserDisplay",{ },chatterComp,doneComponentLoad);
+        }
+        function doneComponentLoad() {
+          // Code After component is loaded
+        }
+        </script>
+      </head>
+        <div id="chatterComp">
+        </div>
+</apex:page>

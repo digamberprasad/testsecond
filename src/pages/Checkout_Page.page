@@ -1,0 +1,17 @@
+<apex:page >
+    <apex:includeLightning />
+
+	<div id="idMembershipPurchase" />
+
+	<script>
+		$Lightning.use("c:Membership_Purchase", function() {
+			$Lightning.createComponent("c:Membership_Purchase_Checkout_Component",
+				{ memberId : "{!$CurrentPage.parameters.memberId}", groupId : "{!$CurrentPage.parameters.groupId}" },
+				"idMembershipPurchase",
+				function(cmp) {
+					
+				}
+			);
+		});
+	</script>	
+</apex:page>

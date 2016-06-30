@@ -1,0 +1,20 @@
+<apex:page sidebar="false">
+    <apex:includeLightning />
+    
+    <div id="outlineTimetable">         
+    </div>  
+    
+    <script>
+        var eventId = "{!$CurrentPage.parameters.id}";
+        console.log('event id ', eventId); 
+        $Lightning.use("c:OutlineTimetableApp2", function() {
+          $Lightning.createComponent("c:OutlineTimetableCmp2",
+          {eventId: eventId},
+          "outlineTimetable",
+          function(cmp) {
+              console.log('component is loaded');
+          });
+        });  
+    </script>
+    
+</apex:page>

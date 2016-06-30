@@ -1,0 +1,77 @@
+<apex:page standardController="Horse__c" extensions="RegisterHorseController" action="{!addHorse}">
+
+	<apex:form >
+		<apex:pageBlock title="Register Horse">
+			
+			<apex:actionFunction name="updateHorse" action="{!updateHorse}" reRender="">
+				<apex:param name="horseFEIID" value=""/>
+				
+			</apex:actionFunction>
+
+			<apex:pageBlockButtons >
+				<apex:commandButton value="Back to Horse" action="{!backToHorse}" rendered="{!isValidationError || isPotentialDuplicate}"/>
+				<apex:commandButton value="Create new Horse in FEI" action="{!confirmAddHorse}" rendered="{!isPotentialDuplicate}"/>
+				<!--<apex:commandButton value="Update Rider" action="{!backToRider}" rendered="{!isPotentialDuplicate}"/>-->
+			</apex:pageBlockButtons>
+
+			<apex:pageMessages id="messages" />
+
+			<apex:pageBlockSection rendered="false">
+				<apex:outputField value="{!Horse__c.Birth_Name__c}"/>
+				<apex:outputField value="{!Horse__c.Name}"/>
+				<apex:outputField value="{!Horse__c.Is_Commercial_Name_Suffix__c}"/>
+				<apex:outputField value="{!Horse__c.Issuing_NF_Code__c}"/>
+				<apex:outputField value="{!Horse__c.Sex__c}"/>
+				<apex:outputField value="{!Horse__c.Colour__c}"/>
+				<apex:outputField value="{!Horse__c.Date_of_Birth__c}"/>
+				<apex:outputField value="{!Horse__c.Is_Active__c}"/>
+				<apex:outputField value="{!Horse__c.Is_Pony__c}"/>
+				<apex:outputField value="{!Horse__c.Breed__c}"/>
+				<apex:outputField value="{!Horse__c.Microchip_Number__c}"/>
+				<apex:outputField value="{!Horse__c.Passport_Number__c}"/>
+				<apex:outputField value="{!Horse__c.Recognition_Code__c}"/>
+				<apex:outputField value="{!Horse__c.Owner_Date_From__c}"/>
+				<apex:outputField value="{!Horse__c.Primary_Owner__c}"/>
+				<apex:outputField value="{!Horse__c.Height_in_Centimetres__c}"/>
+				
+			</apex:pageBlockSection>
+
+			<apex:pageBlockSection title="Duplicate Horse" columns="1" >
+				<apex:outputPanel layout="none" rendered="{!isPotentialDuplicate}">
+					<apex:pageBlockTable value="{!lstHorseWrapper}" var="dupHorse" id="idDuplicateHorse">
+						
+						
+						<apex:column >
+							<apex:facet name="header">FEI ID</apex:facet>
+							<apex:outputLink value="#" onclick="updateHorse('{!dupHorse.horseFEIID}')">
+								<apex:outputText >{!dupHorse.horseFEIID}</apex:outputText>
+							</apex:outputLink>
+						</apex:column>
+						
+						<apex:column >
+							<apex:facet name="header">Name</apex:facet>
+							<apex:outputText >{!dupHorse.currentName}</apex:outputText>
+						</apex:column>
+						
+						<apex:column >
+							<apex:facet name="header">Date of Birth</apex:facet>
+							<apex:outputText >{!dupHorse.dateOfBirth}</apex:outputText>
+						</apex:column>
+
+						<apex:column >
+							<apex:facet name="header">Height</apex:facet>
+							<apex:outputText >{!dupHorse.height}</apex:outputText>
+						</apex:column>
+
+						<apex:column >
+							<apex:facet name="header">Rule Description</apex:facet>
+							<apex:outputText >{!dupHorse.ruleDescription}</apex:outputText>
+						</apex:column>
+						
+					</apex:pageBlockTable>
+				</apex:outputPanel>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+
+</apex:page>

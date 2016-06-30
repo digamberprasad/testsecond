@@ -1,0 +1,52 @@
+<apex:page showHeader="true" sidebar="true" controller="ValidationTestController" tabStyle="Account">
+        <apex:form >
+    <apex:pageBlock title="Validation Testing">
+                <apex:pageBlockSection title="Input">
+                    <apex:pageBlockSectionItem >
+                        <apex:inputTextArea rows="7" cols="100" value="{!entry}" label="Entries Id" title="Multiple Entries can be added separated by comma" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel for="batchmde" value="Batch Mode" />
+                        <apex:inputCheckbox id="batchmde" value="{!mode}" label="Is Batch Mode"  />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:commandButton value="Validate" action="{!fetchValidationResults}"  />
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Output">
+                    <apex:repeat value="{!lstResult}" var="res">
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel for="entId" value="Entry Id" />
+                                <apex:outputText value="{!res.entryId}" id="entId" />
+                            </apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel for="isValid" value="Is Valid Entry" />
+                                <apex:outputText value="{!res.isValidEntry}" id="isValid" />
+                            </apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel for="errors" value="Errors" />
+                                <apex:outputText value="{!res.errors}" id="errors" />
+                            </apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel for="warn" value="Warnings" />
+                                <apex:outputText value="{!res.warnings}" id="warn" />
+                            </apex:pageBlockSectionItem>
+                    </apex:repeat>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Stats">
+                    <apex:pageBlockSectionItem >
+                            <apex:outputLabel for="start" value="Start Time" />
+                            <apex:outputText id="start" value="{!startTime}"  />
+                   </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                            <apex:outputLabel for="end" value="End Time" />
+                            <apex:outputText id="end" value="{!endTime}"  />
+                   </apex:pageBlockSectionItem>
+                  <apex:pageBlockSectionItem >
+                            <apex:outputLabel for="elap" value="Time Elapsed (in milliseconds)" />
+                            <apex:outputText id="elap" value="{!elapsedTime}"  />
+                   </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>
+</apex:page>

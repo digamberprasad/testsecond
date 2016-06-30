@@ -1,0 +1,17 @@
+<apex:page standardController="Contact" showHeader="true" sidebar="true">
+	<apex:includeLightning />
+
+	<div id="idRider" />
+
+	<script>
+		$Lightning.use("c:Register_Rider", function() {
+			$Lightning.createComponent("c:Register_Rider_Lightning",
+				{ riderId : "{!Contact.Id}}" },
+				"idRider",
+				function(cmp) {
+					
+				}
+			);
+		});
+	</script>
+</apex:page>
