@@ -714,15 +714,17 @@
         "mmState": "clean"
     },
     "MembershipPurchaseCheckoutController.cls": {
-        "createdById": "0054E000000L2p6QAC",
-        "createdByName": "Digamber Prasad",
-        "createdDate": "2016-06-16T14:38:30.000Z",
-        "fileName": "unpackaged/classes/MembershipPurchaseCheckoutController.cls",
-        "fullName": "MembershipPurchaseCheckoutController",
         "id": "01p4E000000D70dQAC",
+        "name": "MembershipPurchaseCheckoutController",
+        "createdDate": "2016-06-16T14:38:30.000+0000",
+        "createdById": "0054E000000L2p6QAC",
+        "namespacePrefix": null,
         "lastModifiedById": "0054E000000L2p6QAC",
+        "lastModifiedDate": "2016-06-30T12:48:25.000+0000",
+        "fullName": "MembershipPurchaseCheckoutController",
+        "fileName": "unpackaged/classes/MembershipPurchaseCheckoutController.cls",
+        "createdByName": "Digamber Prasad",
         "lastModifiedByName": "Digamber Prasad",
-        "lastModifiedDate": "2016-06-28T19:40:07.000Z",
         "manageableState": "unmanaged",
         "type": "ApexClass",
         "mmState": "clean"
